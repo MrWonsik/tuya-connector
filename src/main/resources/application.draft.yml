@@ -1,0 +1,18 @@
+server:
+  port: 8080
+
+spring:
+  datasource:
+    url: jdbc:sqlite:tuya_history.db
+    driver-class-name: org.sqlite.JDBC
+  jpa:
+    database-platform: org.hibernate.community.dialect.SQLiteDialect
+    hibernate:
+      ddl-auto: update
+    show-sql: false
+
+# Tuya API Configuration Template
+tuya:
+  endpoint: https://openapi.tuyaeu.com
+  client-id: "YOUR_CLIENT_ID_HERE"
+  secret: "YOUR_CLIENT_SECRET_HERE"
