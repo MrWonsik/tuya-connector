@@ -18,11 +18,8 @@ public class TuyaConnectorController {
 
     @GetMapping("/test")
     public ResponseEntity<String> testConnection() {
-        String token = tuyaService.getAccessToken();
-        if (token != null) {
-            return ResponseEntity.ok("Sukces! Pobrano token Tuya: " + token);
-        } else {
-            return ResponseEntity.internalServerError().body("Błąd autoryzacji z Tuya. Sprawdź logi.");
-        }
+        return tuyaService.getAccessToken()
+                .map(token -> ResponseEntity.ok("Sukces! Pobrano token Tuya: " + token))
+                .orElseGet(() -> ResponseEntity.internalServerError().body("Błąd autoryzacji z Tuya. Sprawdź logi."));
     }
 }
